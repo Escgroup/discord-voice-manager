@@ -16,7 +16,7 @@ client.login(process.env.TOKEN);
 
 client.on("ready", () => {
     console.log(`${client.user.tag}を起動しました。`);
-    client.user.setActivity("通話管理Bot(製作中)");
+    client.user.setActivity("通話管理Bot");
     setup(client, config);
     setInterval(() => check(client, config, db), 60000);
 });
