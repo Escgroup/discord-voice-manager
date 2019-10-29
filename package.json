@@ -1,0 +1,17 @@
+{
+    "name": "discord-voice-manager",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Escgroup/discord-voice-manager.git",
+    "author": "mouse",
+    "license": "MIT",
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "eslint": "^6.6.0",
+        "eslint-config-esc": "Esc-Developer/eslint-config-esc",
+        "prettier": "^1.18.2"
+    },
+    "dependencies": {
+        "discord.js": "^11.5.1"
+    }
+}
