@@ -24,7 +24,8 @@ const list = {
 const create = (client, messageReaction, user, config, type, db) => {
     messageReaction.message.channel
         .send(
-            `${list[type].ja}用VCを作成します。
+            `${user}
+${list[type].ja}用VCを作成します。
 名前を入力してください。
 
 Create a ${list[type].en} VC.
@@ -38,7 +39,6 @@ Please enter VC name.`
                     errors: ["time"],
                 })
                 .then(collected => {
-                    collected.first().delete();
                     const category = client.channels.get(config.category);
                     message.guild
                         .createChannel(
@@ -51,20 +51,23 @@ Please enter VC name.`
                             }
                         )
                         .then(channel => {
-                            db.append("main", [
-                                {
-                                    channel_id: channel.id,
-                                    channel_name: channel.name,
-                                    user_id: user.id,
-                                    user_name: user.username,
-                                    time: channel.createdTimestamp,
-                                },
-                            ]);
                             channel.createInvite({ maxAge: 600 }).then(invite =>
-                                message.channel.send(invite.url).then(msg => {
-                                    message.delete(1000);
-                                    msg.delete(100000);
-                                })
+                                client.channels
+                                    .get(config.log)
+                                    .send(user + invite.url)
+                                    .then(msg => {
+                                        db.append("main", [
+                                            {
+                                                channel_id: channel.id,
+                                                channel_name: channel.name,
+                                                user_id: user.id,
+                                                user_name: user.username,
+                                                time: channel.createdTimestamp,
+                                                invite_msg: msg.id,
+                                            },
+                                        ]);
+                                        message.delete(1000);
+                                    })
                             );
                         });
                 })

@@ -20,6 +20,18 @@ module.exports = (client, config, db) => {
                             set: { time: Date.now() },
                         });
                     }
+                    db.read("main", {
+                        limit: 1,
+                        search: { channel_id: channel.id },
+                    }).then(da => {
+                        client.channels
+                            .get(config.log)
+                            .messages.get(da[0].invite_msg)
+                            .delete();
+                    });
+                    db.delete("main", {
+                        search: { channel_id: channel.id },
+                    });
                     voice_channel.delete();
                 }
             });

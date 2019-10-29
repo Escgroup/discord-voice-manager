@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable no-magic-numbers */
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -22,10 +23,11 @@ client.on("ready", () => {
 
 client.on("message", message => {
     if (message.author.id !== config.owner) return;
+    if (message.content === "vc+clean") message.channel.bulkDelete(99);
     if (message.channel.id !== config.channel) return;
     // eslint-disable-next-line no-magic-numbers
-    if (message.content === "vc+clean") message.channel.bulkDelete(99);
     if (message.content === "vc+setup") setup(client, config);
+    if (message.author.id !== client.user.id) message.delete(1000);
 });
 
 // eslint-disable-next-line max-lines-per-function
