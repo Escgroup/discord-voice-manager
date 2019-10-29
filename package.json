@@ -5,6 +5,10 @@
     "repository": "https://github.com/Escgroup/discord-voice-manager.git",
     "author": "mouse",
     "license": "MIT",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "node --require dotenv/config src/index.js"
+    },
     "devDependencies": {
         "dotenv": "^8.2.0",
         "eslint": "^6.6.0",
