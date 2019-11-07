@@ -1,5 +1,6 @@
 module.exports = async (client, config) => {
     const channel = client.channels.get(config.channel);
+    channel.bulkDelete(99);
     const msg = await channel.send({
         embed: {
             title: "Voice Manager",

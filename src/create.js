@@ -43,7 +43,7 @@ Please enter VC name.`
                     message.guild
                         .createChannel(
                             `vm ${list[type].emoji}: ${
-                                collected.first().content
+                            collected.first().content
                             }`,
                             {
                                 type: "voice",

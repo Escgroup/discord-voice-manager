@@ -22,11 +22,13 @@ client.on("ready", () => {
 });
 
 client.on("message", message => {
-    if (message.author.id !== config.owner) return;
-    if (message.content === "vc+clean") message.channel.bulkDelete(99);
+    if (message.author.id === config.owner) {
+        if (message.content === "vc+clean") message.channel.bulkDelete(99);
+        if (message.channel.id !== config.channel) return;
+        // eslint-disable-next-line no-magic-numbers
+        if (message.content === "vc+setup") setup(client, config);
+    }
     if (message.channel.id !== config.channel) return;
-    // eslint-disable-next-line no-magic-numbers
-    if (message.content === "vc+setup") setup(client, config);
     if (message.author.id !== client.user.id) message.delete(1000);
 });
 
