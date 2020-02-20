@@ -1,9 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const SteinStore = require("stein-js-client");
-const db = new SteinStore(process.env.API);
-
 const config = require("./config");
 
 const setup = require("./setup");
@@ -32,5 +29,5 @@ client.on("message", message => {
 client.on("messageReactionAdd", (messageReaction, user) => {
   if (user.bot) return;
   if (messageReaction.message.channel.id !== config.channel) return;
-  create(client, messageReaction, user, config, db);
+  create(client, messageReaction, user, config);
 });

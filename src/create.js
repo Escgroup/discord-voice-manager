@@ -16,7 +16,11 @@ const list = {
   },
 };
 
-const create = (client, messageReaction, user, config, type, db) => {
+const fs = require("fs");
+
+const db = JSON.parse(fs.readFileSync(`${__dirname}/db.json`))
+
+const create = (client, messageReaction, user, config, type) => {
   messageReaction.message.channel
     .send(
       `${user}
@@ -51,16 +55,15 @@ Please enter VC name.`
                   .get(config.log)
                   .send(user + invite.url)
                   .then(msg => {
-                    db.append("main", [
-                      {
-                        channel_id: channel.id,
-                        channel_name: channel.name,
-                        user_id: user.id,
-                        user_name: user.username,
-                        time: channel.createdTimestamp,
-                        invite_msg: msg.id,
-                      },
-                    ]);
+                    db.push({
+                      channel_id: channel.id,
+                      channel_name: channel.name,
+                      user_id: user.id,
+                      user_name: user.username,
+                      time: channel.createdTimestamp,
+                      invite_msg: msg.id,
+                    });
+                    fs.writeFileSync(`${__dirname}/db.json`, JSON.stringify(db));
                     message.delete(1000);
                   })
               );
