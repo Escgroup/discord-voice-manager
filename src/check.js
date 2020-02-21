@@ -7,8 +7,7 @@ module.exports = (client, config) => {
     db.forEach((element, index) => {
         console.log("checkt" + element);
         const time = Number(element.time);
-        //300000
-        if (Date.now() - time > 10000) {
+        if (Date.now() - time > 300000) {
             const voice_channel = client.channels.get(element.channel_id);
 
             try {

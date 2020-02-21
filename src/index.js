@@ -13,8 +13,7 @@ client.on("ready", () => {
     console.log(`${client.user.tag}を起動しました。`);
     client.user.setActivity("通話管理Bot");
     setup(client, config);
-    //60000
-    setInterval(() => check(client, config), 1000);
+    setInterval(() => check(client, config), 60000);
 });
 
 client.on("message", message => {
