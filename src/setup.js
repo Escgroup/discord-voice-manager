@@ -8,7 +8,7 @@ module.exports = async (client, config) => {
                 "用途にあった一時的な通話を作成します。\n以下のオプションから選択してください。\n\nCreate a temporary call that suits your purpose.\nChoose from the following options:\n",
             fields: [
                 {
-                    name: "雑談(small talk)",
+                    name: "雑談(free talk)",
                     value: config.A,
                 },
                 {

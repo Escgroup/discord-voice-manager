@@ -3,7 +3,7 @@ const fs = require("fs");
 const list = {
     A: {
         ja: "雑談",
-        en: "small talk",
+        en: "free talk",
         emoji: "💬",
     },
     B: {
