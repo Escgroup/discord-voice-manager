@@ -1,37 +1,36 @@
-module.exports = (client, config, db) => {
-  client.channels
-    .filter(channel => channel.name.startsWith("vm"))
-    .forEach(channel => {
-      db.read("main", {
-        limit: 1,
-        search: { channel_id: channel.id },
-      }).then(data => {
-        const time = Number(data[0].time);
-        if (Date.now() - time > 300000) {
-          const voice_channel = client.channels.get(
-            data[0].channel_id
-          );
+const fs = require("fs");
 
-          if (voice_channel.members.first()) {
-            return db.edit("main", {
-              search: { channel_id: channel.id },
-              set: { time: Date.now() },
-            });
-          }
-          db.read("main", {
-            limit: 1,
-            search: { channel_id: channel.id },
-          }).then(da => {
-            client.channels
-              .get(config.log)
-              .messages.get(da[0].invite_msg)
-              .delete();
-          });
-          db.delete("main", {
-            search: { channel_id: channel.id },
-          });
-          voice_channel.delete();
+module.exports = (client, config) => {
+    let db = JSON.parse(fs.readFileSync(`${__dirname}/db.json`));
+
+    console.log(db);
+    db.forEach((element, index) => {
+        console.log("checkt" + element);
+        const time = Number(element.time);
+        //300000
+        if (Date.now() - time > 10000) {
+            const voice_channel = client.channels.get(element.channel_id);
+
+            try {
+                if (voice_channel.members.first()) {
+                    db[index].time = Date.now();
+                    fs.writeFileSync(
+                        `${__dirname}/db.json`,
+                        JSON.stringify(db)
+                    );
+                } else {
+                    voice_channel.delete();
+                    client.channels
+                        .get(config.log)
+                        .messages.get(element.invite_msg)
+                        .delete();
+                    db.splice(index, 1);
+                    fs.writeFileSync(
+                        `${__dirname}/db.json`,
+                        JSON.stringify(db)
+                    );
+                }
+            } catch {}
         }
-      });
     });
 };
