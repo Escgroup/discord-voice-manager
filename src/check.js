@@ -3,9 +3,7 @@ const fs = require("fs");
 module.exports = (client, config) => {
     let db = JSON.parse(fs.readFileSync(`${__dirname}/db.json`));
 
-    console.log(db);
     db.forEach((element, index) => {
-        console.log("checkt" + element);
         const time = Number(element.time);
         if (Date.now() - time > 300000) {
             const voice_channel = client.channels.get(element.channel_id);
