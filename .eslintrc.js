@@ -1,12 +1,9 @@
-"use strict";
-
 module.exports = {
-    parserOptions: {
-        ecmaVersion: "2020",
-    },
-    extends: ["prettier"],
-    plugins: ["prettier"],
-    rules: {
-        "prettier/prettier": ["error", require("./.prettierrc.js")],
-    },
+  extends: [
+    'mouse',
+    'mouse/node',
+    'mouse/typescript',
+    'mouse/prettier',
+    'mouse/typescript-prettier',
+  ]
 };
