@@ -30,6 +30,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "ecstar": "^3.2.6"
+    "ecstar": "^3.3.0"
   }
 }
