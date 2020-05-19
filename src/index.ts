@@ -5,6 +5,10 @@ const client = new Client({
   prefix: 'vc++',
   owner: '444754554517454848',
   lang: new LangJA(),
+  config: {
+    channel: { manager: '638565348563484682', board: '638643143469694977' },
+  },
 });
 
 client.login(process.env.TOKEN);
+
