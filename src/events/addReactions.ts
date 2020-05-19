@@ -50,7 +50,7 @@ export = class extends Event {
     if (channel.id !== this.client.config?.channel.manager) return;
 
     const create = async (type: 'A' | 'B' | 'C') => {
-      channel.send(
+      const channelNamePromptMessage = await channel.send(
         `${user}\n${
           list.get(type)?.ja
         }用VCを作成します。\n名前を入力してください。\n\nCreate a ${
@@ -65,12 +65,17 @@ export = class extends Event {
           errors: ['time'],
         })
         .catch(() => {
-          channel.send(
-            'おそすぎです、キャンセルしました。\nToo late, canceled.'
-          );
+          channel
+            .send('おそすぎです、キャンセルしました。\nToo late, canceled.')
+            .then((msg) => {
+              msg.delete({ timeout: 5000 });
+              channelNamePromptMessage.delete();
+            });
         });
 
       if (!channelNamePrompt) return;
+
+      channelNamePromptMessage.delete({ timeout: 1000 });
 
       const category = this.client.channels.cache.get(
         this.client.config?.category
