@@ -1,4 +1,5 @@
 import { Event, Client } from 'ecstar';
+import { setup } from '../lib/setup';
 
 export = class extends Event {
   constructor(client: Client) {
@@ -6,7 +7,7 @@ export = class extends Event {
   }
   run() {
     this.client.user?.setActivity('通話管理Bot');
-    // setup(client, config);
+    setup(this.client);
     // setInterval(() => check(client, config), 60000);
   }
 };
