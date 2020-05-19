@@ -9,17 +9,30 @@ export const check = async (client: Client) => {
     const voiceChannel = client.channels.cache.get(
       value.channel_id
     ) as VoiceChannel;
+    if (!voiceChannel) {
+      await dbfile.splice(index, 1);
+      await db.save(dbfile);
+      return;
+    }
     try {
       if (voiceChannel.members.first()) {
         dbfile[index].time = Date.now();
         db.save(dbfile);
       } else {
-        voiceChannel.delete();
+        await voiceChannel.delete();
 
-        dbfile.splice(index, 1);
+        await (
+          await (client.channels.cache.get(
+            client.config?.channel.board
+          ) as TextChannel).messages.fetch(value.invite_msg)
+        ).delete();
 
-        db.save(dbfile);
+        await dbfile.splice(index, 1);
+
+        await db.save(dbfile);
       }
-    } catch {}
+    } catch (err) {
+      console.log(err);
+    }
   });
 };
