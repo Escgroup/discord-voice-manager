@@ -12,6 +12,11 @@ export const check = async (client: Client) => {
     if (!voiceChannel) {
       await dbfile.splice(index, 1);
       await db.save(dbfile);
+      await (
+        await (client.channels.cache.get(
+          client.config?.channel.board
+        ) as TextChannel).messages.fetch(value.invite_msg)
+      )?.delete();
       return;
     }
     try {
