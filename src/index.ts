@@ -7,7 +7,7 @@ const client = new Client({
   owner: '444754554517454848',
   lang: new LangJA(),
   config: {
-    channel: { manager: '638565348563484682', board: '638643143469694977' },
+    channel: { manager: '638565348563484682', board: '712186624540409916' },
     category: '443329504715472899',
   },
 });
