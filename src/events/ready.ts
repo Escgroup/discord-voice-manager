@@ -6,7 +6,7 @@ export = class extends Event {
   }
   run() {
     this.client.user?.setActivity('通話管理Bot');
-    
+
     // setInterval(() => check(client, config), 60000);
   }
 };
