@@ -18,11 +18,11 @@ class database {
     file.push(item);
     this.save(file);
   }
-  private async getFile() {
+  async getFile() {
     const file: [dataType] = JSON.parse(await fs.readFile(this.path, 'utf-8'));
     return file;
   }
-  private save(item: [dataType]) {
+  save(item: [dataType]) {
     fs.writeFile(this.path, JSON.stringify(item));
   }
 }
