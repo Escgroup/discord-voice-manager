@@ -1,4 +1,5 @@
 import { Event, Client } from 'ecstar';
+import { check } from '../lib/check';
 
 export = class extends Event {
   constructor(client: Client) {
@@ -7,6 +8,6 @@ export = class extends Event {
   run() {
     this.client.user?.setActivity('通話管理Bot');
 
-    // setInterval(() => check(client, config), 60000);
+    setInterval(() => check(this.client), 15000);
   }
 };
