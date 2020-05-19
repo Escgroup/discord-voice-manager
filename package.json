@@ -16,7 +16,6 @@
     }
   },
   "devDependencies": {
-    "@types/keyv": "^3.1.1",
     "@types/node": "^13.13.5",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
@@ -31,8 +30,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@keyv/sqlite": "^2.0.2",
-    "ecstar": "^3.3.0",
-    "keyv": "^4.0.1"
+    "ecstar": "^3.3.0"
   }
 }
