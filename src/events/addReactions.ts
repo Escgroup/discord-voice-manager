@@ -1,6 +1,7 @@
 import { Event, Client, print } from 'ecstar';
-import { MessageReaction, User, TextChannel } from 'discord.js';
+import { MessageReaction, User, TextChannel, VoiceChannel } from 'discord.js';
 import { emojis } from '../lib/emojis';
+import { db } from '../lib/database';
 
 const list = new Map([
   [
@@ -90,9 +91,18 @@ export = class extends Event {
         maxAge: 86400,
       });
 
-      (this.client.channels.cache.get(
+      const invite_msg = await (this.client.channels.cache.get(
         this.client.config?.channel.board
       ) as TextChannel).send(`${user}  ${inviteUrl?.url}`);
+
+      db.add({
+        channel_id: createdVoiceChannel?.id || '',
+        channel_name: createdVoiceChannel?.name || '',
+        user_id: user.id,
+        user_name: user.tag,
+        time: createdVoiceChannel?.createdTimestamp || 0,
+        invite_msg: invite_msg.id,
+      });
     };
 
     emojis.forEach((value, key) => {
