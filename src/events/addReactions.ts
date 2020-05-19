@@ -95,5 +95,7 @@ export = class extends Event {
         create(key);
       }
     });
+
+    messageReaction.users.remove(user);
   }
 };
