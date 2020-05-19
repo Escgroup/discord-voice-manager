@@ -509,10 +509,10 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-ecstar@^3.2.6:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/ecstar/-/ecstar-3.2.6.tgz#5bb0aa087da210e46e8cb416beebe1b63e0fd742"
-  integrity sha512-mfvED6rl5aznMI1QQqvc3PnZdVdymgUPLllNHEcCShq6MvHbRiFjz6RgpVSxBeP0g75MmNkrakfYwWHD1Cw8dQ==
+ecstar@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ecstar/-/ecstar-3.3.0.tgz#2d6e689a65a2eb67cefd4c75ca4d992d9116afcd"
+  integrity sha512-LLp4D4eKlrIUkuXU5FGKBERtBhtSfPNHy4zwM2vWLbeQ4OmB2xvSk7yP4JbW/jm1Tdk1rjyXo9QB10p0sOnF2A==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.3.1"
