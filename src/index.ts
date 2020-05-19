@@ -8,6 +8,7 @@ const client = new Client({
   lang: new LangJA(),
   config: {
     channel: { manager: '638565348563484682', board: '638643143469694977' },
+    category: '443329504715472899',
   },
 });
 
