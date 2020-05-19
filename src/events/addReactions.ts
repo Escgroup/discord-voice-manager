@@ -82,7 +82,7 @@ export = class extends Event {
       );
 
       const inviteUrl = await createdVoiceChannel?.createInvite({
-        maxAge: 86400000,
+        maxAge: 86400,
       });
 
       (this.client.channels.cache.get(
