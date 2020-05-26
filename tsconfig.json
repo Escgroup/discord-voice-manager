@@ -6,9 +6,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "strict": true,
-    "declaration": true,
-    "declarationDir": "dist/type"
+    "strict": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
