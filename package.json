@@ -7,7 +7,7 @@
     "lint": "eslint --ext ts .",
     "fix": "eslint --ext ts --fix .",
     "db": "echo [] > dist/lib/db.json",
-    "start": "tsc && node dist/index"
+    "build": "tsc"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint"
